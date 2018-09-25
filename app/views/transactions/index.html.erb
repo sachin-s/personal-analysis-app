@@ -1,9 +1,11 @@
-<h1>Transaction home page</h1>
+
 
 
 <%if @transactions.empty? %>
+<br><br>
   <%= render "empty_list" %>
 <% else %>
+<h1>Transaction home page</h1>
 <div class="row">
 <div class="col-sm-6 card graph-css">
 <div>
