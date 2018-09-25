@@ -8,8 +8,6 @@ This Repo is to create basic personal analysis app including features to record 
 Install ruby on rails(you can lookup the gemfile for dependent gems and rails version accordingly you can install)
 If you prefer faster insatllation you can refer http://railsinstaller.org to get suitable version.
 
-Things you may want to cover:
-
 ### Configuration
 
 After installation of ruby on rails go to the root folder(BANK folder) and run "rails s" command to run the server
