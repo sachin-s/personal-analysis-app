@@ -3,7 +3,7 @@
 
 This Repo is to create basic personal analysis app including features to record and analyse daily financial transactions and to provide features to analyse day to day activities like reading, exercise etc.. by entering relative marks ranging from 0-10 to the activities based on the self evaluation at the end of the day(**Here date is unique so you can enter only one entry per day**). The activities coded here is just for example. You can change the attributes based on your requirements(You should change the schema according to your requirements and reset the project)
 
-###Requirements
+### Requirements
 
 Install ruby on rails(you can lookup the gemfile for dependent gems and rails version accordingly you can install)
 If you prefer faster insatllation you can refer http://railsinstaller.org to get suitable version.
@@ -12,7 +12,7 @@ Things you may want to cover:
 
 ### Configuration
 
-After installation of ruby on rails go to the root folder(BANK folder) and run "rails s" command to sun the server
+After installation of ruby on rails go to the root folder(BANK folder) and run "rails s" command to run the server
 you can access the app in http://localhost:3000
 
 some of the general solutions you can try if any problem occurs :
