@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bank</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="/notify.min.js"></script>
+
+    </head>
+
+  <body>
+    <%= render 'layouts/header' %>
+
+
+
+    <% if user_signed_in? %>
+    <div id="sidebar-wrapper" class="bg-secondary">
+      <ul class="nav flex-column text-white">
+        <li><%= link_to("New Transaction",new_transaction_path,class:'text-white') %></li>
+        <li><%= link_to("Transaction Analysis",transactions_path,class:'text-white') %></li>
+        <li><%= link_to("Activity Entry",new_relative_activity_path,class:'text-white') %></li>
+        <li><%= link_to("Activities Dashboard",relative_activities_path,class:'text-white') %></li>
+        <li><a>About</a></li>
+      </ul>
+    </div>
+    <% end %>
+
+    <div id="main-content-wrapper" class="bg-light">
+    <% if notice %>
+    <script>$.notify("<%= notice %>", "info");</script>
+    <% end %>
+    <% if alert %>
+    <script>$.notify("<%= alert %>", "warn");</script>
+    <% end %>
+
+
+        <%= yield %>
+
+    </div>
+    
+    </div>
+    <%= render 'layouts/footer' %>
+    <%= render 'layouts/customJS'%>
+  </body>
+</html>

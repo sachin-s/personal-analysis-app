@@ -1,0 +1,143 @@
+<h1>Relative Activities</h1>
+<%if @ractivities.empty? %>
+  <%= render "empty_list" %>
+<% else %>
+<br>
+<div class="row">
+<div class="col-sm-4">
+<%= line_chart [
+  {:name=>"Meditation",:data=>@med_data},
+  {:name=>"Minnimum pass value",:data=>@min_data}
+  
+  ],max:10,id:'ch5' %>
+  </div>
+  <div class="col-sm-4">
+  <%= line_chart [
+    {:name=>"Exercise",:data=>@exer_data},
+    {:name=>"Minnimum pass value",:data=>@min_data}
+  
+  ],max:10,id:'ch6' %>
+  </div>
+  <div class="col-sm-4">
+  <%= line_chart [
+    {:name=>"Reading",:data=>@read_data},
+    {:name=>"Minnimum pass value",:data=>@min_data}
+  ],max:10,id:'ch7' %>
+  </div>
+  
+  </div>
+<div class="row">
+<div class="col-sm-4">
+<%= line_chart [{:name=>"Concentration",:data=>@conc_data},
+{:name=>"Minnimum pass value",:data=>@min_data}],max:10,id:'ch8' %>
+  </div>
+  <div class="col-sm-4">
+  <%= line_chart [ {:name=>"Hard Working",:data=>@hard_data},
+  {:name=>"Minnimum pass value",:data=>@min_data}
+  ],max:10,id:'ch9' %>
+  </div>
+  <div class="col-sm-4">
+  <%= line_chart [
+    {:name=>"Mental Stability",:data=>@metal_data},
+    {:name=>"Minnimum pass value",:data=>@min_data}
+  ],max:10,id:'ch10' %>
+  </div>
+  
+  </div>
+
+  <div class="row">
+  <div class="col-sm-4">
+  <%= line_chart [{:name=>"Self Confidence",:data=>@self_data},
+  {:name=>"Minnimum pass value",:data=>@min_data}
+  ],max:10,id:'ch11' %>
+    </div>
+    <div class="col-sm-4">
+    <%= line_chart [ {:name=>"Time Management",:data=>@time_data},
+    {:name=>"Minnimum pass value",:data=>@min_data}
+    
+    ],max:10,id:'ch12' %>
+    </div>
+    <div class="col-sm-4">
+    <%= line_chart [
+      {:name=>"Universal Power",:data=>@univ_data},
+      {:name=>"Minnimum pass value",:data=>@min_data}
+    ],max:10 ,id:'ch13' %>
+    </div>
+    
+    </div>
+
+
+
+<div class="row">
+<div class="col-md-3">
+<input type="radio" value="" name="colorDecider" id="colorcheck1">
+  <label>
+    Color based on value
+  </label></input>
+  </div>
+  <div class="col-md-3">
+  <input type="radio" value=""  name="colorDecider" id="colorcheck2">
+  <label>
+    Disable color
+  </label></input>
+  </div>
+</div>
+<br>
+<table class='table table-striped' id="ractivity1">
+  <tr><th>Entry Date</th><th>Medit</th><th>Exer</th><th>Read</th><th>Conc</th><th>Hard</th><th>Ment</th><th>Self</th><th>Time</th><th>Univ</th><th>Total</th><th>Actions</th></tr>
+
+  <% @ractivities.each do |ractivity| %>
+    <tr>
+        <td><%= ractivity.entry_date %></td>
+        <td class="markc"><%= ractivity.meditation   %></td>
+        <td class="markc"><%= ractivity.exercise  %></td>
+        <td class="markc"><%= ractivity.reading %></td>
+        <td class="markc"><%= ractivity.concentration %></td>
+        <td class="markc"><%= ractivity.hard_working  %></td>
+        <td class="markc"><%= ractivity.metal_stability  %></td>
+        <td class="markc"><%= ractivity.self_confidene  %></td>
+        <td class="markc"><%= ractivity.time_management  %></td>
+        <td class="markc"><%= ractivity.universal_power  %></td>
+        <td class="markd"><%= ractivity.totalScore  %></td>
+        <td><%= link_to("Show",ractivity,class:'btn btn-primary') %> <%= link_to "Delete", ractivity, method: :delete, data: { confirm: "Are you sure?" },class:'btn btn-primary' %></td>
+    </tr>
+  <% end %>
+</table>
+
+<% end %>
+<script>
+function myColorFunc(){
+$('#ractivity1 td.markc').each(function(){
+  if (Number($(this).text()) <= 5) {
+      $(this).css('background-color','#ffcccc');
+  }
+else{
+ 
+  $(this).css('background-color','#ccffcc');
+}
+});
+$('#ractivity1 td.markd').each(function(){
+  if (Number($(this).text()) <= 40 ) {
+      $(this).css('background-color','#ffcccc');
+  }
+else{
+ 
+  $(this).css('background-color','#ccffcc');
+}
+});
+
+}
+$('#colorcheck1').click(myColorFunc);
+$('#colorcheck2').click(function(){
+
+$('#ractivity1 td.markc').each(function(){
+        $(this).css('background-color','initial');
+});
+$('#ractivity1 td.markd').each(function(){
+        $(this).css('background-color','initial');
+});
+
+
+});
+
+</script>

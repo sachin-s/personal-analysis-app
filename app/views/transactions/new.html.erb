@@ -1,0 +1,81 @@
+
+<%= form_for :post, url: transactions_path,:html => {:class => "form-horizontal center"} do |f| %>
+    <div class="form-group row">
+    <%= f.label "Transaction type : ",class: "col-sm-2 col-form-label"%>
+
+    <div class="col-sm-10">
+    <div class="form-check form-check-inline">
+
+    <%= f.radio_button :transaction_type, 'credit',class:"form-check-input", :checked => true %> 
+    <%= f.label :transaction_type ,"Credit",class: "form-check-label"%>
+
+    </div>
+
+
+    <div class="form-check form-check-inline">
+
+    <%= f.radio_button :transaction_type, 'debit',class:"form-check-input" %> 
+    <%= f.label :transaction_type ,"Debit",class: "form-check-label"%>
+
+    </div>
+    </div>
+    </div>
+    
+
+    <div class="form-group row">
+        <%= f.label :amount ,"Amount : ",class: "col-sm-2 col-form-label"%>
+        <div class="col-sm-10">
+        <%= f.number_field :amount, step: :any,class: 'form-control',:required=>true %>
+        </div>
+    </div>
+    <div class="form-group row">
+        <%= f.label :date_of_transaction, "Date :",class: "col-sm-2 col-form-label" %>
+        <div class="col-sm-10">
+        <%= f.date_field :date_of_transaction,class: 'form-control' %>
+        </div>
+    </div>
+    <div class="form-group row">
+        <%= f.label :total_balance ,"Total balance : ",class: "col-sm-2 col-form-label"%>
+        <div class="col-sm-10">
+        <%= f.number_field :total_balance, step: :any,class: 'form-control',:readonly=>true %>
+        </div>
+    </div>
+    <div class="form-group row">
+        <%= f.label :transaction_account ,"Account Name : ",class: "col-sm-2 col-form-label"%>
+        <div class="col-sm-10">
+        <%= f.text_field :transaction_account,class: 'form-control' %>
+        </div>
+    </div>
+    <div class="form-group">
+        <%= f.label :comments ,"comments : ",class: "control-label"%>
+        <%= f.text_area :comments, rows: "5",class: 'form-control' %>
+    </div>
+
+        <%= f.submit "Create",class: 'btn btn-primary' %>
+  <% end %>
+  <script>
+  var t_amount = <%=@transaction_amount%>;
+  document.getElementById("post_date_of_transaction").valueAsDate = new Date();
+  document.getElementById("post_comments").innerHTML = "Daily spending";
+  document.getElementById("post_transaction_account").value = "Bank account";
+  document.getElementById("post_total_balance").value = t_amount;
+  function myCordFunc(){
+    var cord = $('input[name="post[transaction_type]"]:checked').val();
+    if(cord=="credit")
+        {
+            document.getElementById("post_total_balance").value = (Number(t_amount) + Number(document.getElementById("post_amount").value)).toString().replace(/^0+/, '');
+        }
+    if(cord=="debit")
+        {
+            document.getElementById("post_total_balance").value = (Number(t_amount) - Number(document.getElementById("post_amount").value)).toString().replace(/^0+/, '');;
+        }
+  }
+  $('#post_amount').change(function(){
+    myCordFunc();
+  });
+  $('input[name="post[transaction_type]"]').change(function(){
+      myCordFunc();
+  }
+);
+  
+  </script>

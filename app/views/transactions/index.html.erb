@@ -1,0 +1,103 @@
+<h1>Transaction home page</h1>
+
+
+<%if @transactions.empty? %>
+  <%= render "empty_list" %>
+<% else %>
+<div class="row">
+<div class="col-sm-6 card graph-css">
+<div>
+  <select class="custom-select" id="inputGroupSelect04">
+    <option selected>Choose query...</option>
+    <option value="1">Show Both Credit/Debit Transactions</option>
+    <option value="2">Only Debit Transactions</option>
+    <option value="3">Only Credit Transactions</option>
+  </select>
+  <br><br>
+  </div>
+
+<%= line_chart [{:name=>"Credit",:data=>@credit_data},{:name=>"Debit",:data=>@debit_data}],id:'ch1' %>
+<%= line_chart @debit_data,id:'ch2' %>
+<%= line_chart @credit_data,id:'ch3' %>
+
+</div>
+<div class="col-sm-6 card graph-css">
+<div>
+  <select class="custom-select" id="inputGroupSelect05">
+    <option selected>Choose query...</option>
+    <option value="1">Show Both Credit/Debit Transactions</option>
+    <option value="2">Only Debit Transactions</option>
+    <option value="3">Only Credit Transactions</option>
+  </select>
+  <br><br>
+  </div>
+
+<%= column_chart [{:name=>"Credit",:data=>@credit_data},{:name=>"Debit",:data=>@debit_data}],id:'clh1' %>
+<%= column_chart @debit_data,id:'clh2' %>
+<%= column_chart @credit_data,id:'clh3' %>
+</div>
+</div>
+<br>
+<div class="container">
+<table class='table table-striped'>
+  <tr><th>Transaction Type</th><th>Amount</th><th>Date</th><th>Total balance</th><th>transaction_account</th><th>comments</th><th>Actions</th></tr>
+
+  <% @transactions.each do |transaction| %>
+    <tr>
+        <td><%= transaction.transaction_type  %></td>
+        <td><%= transaction.amount  %></td>
+        <td><%= transaction.date_of_transaction  %></td>
+        <td><%= transaction.total_balance %></td>
+        <td><%= transaction.transaction_account %></td>
+        <td><%= transaction.comments  %></td>
+        <td><%= link_to("Show",transaction,class:'btn btn-primary') %> <%= link_to "Delete", transaction, method: :delete, data: { confirm: "Are you sure?" },class:'btn btn-primary' %></td>
+    </tr>
+  <% end %>
+<%end%>
+</table>
+</div>
+<script>
+$('#ch2').hide();
+
+$('#ch3').hide();
+
+$('#inputGroupSelect04').change(function(){
+  if($('#inputGroupSelect04').val() == "1") {
+    $('#ch1').show(); 
+    $('#ch2').hide(); 
+    $('#ch3').hide(); 
+  }
+  if($('#inputGroupSelect04').val() == "2") {
+    $('#ch1').hide(); 
+    $('#ch2').show(); 
+    $('#ch3').hide(); 
+  }
+  if($('#inputGroupSelect04').val() == "3") {
+    $('#ch1').hide(); 
+    $('#ch2').hide(); 
+    $('#ch3').show(); 
+  }
+});
+
+$('#clh2').hide();
+
+$('#clh3').hide();
+
+$('#inputGroupSelect05').change(function(){
+  if($('#inputGroupSelect05').val() == "1") {
+    $('#clh1').show(); 
+    $('#clh2').hide(); 
+    $('#clh3').hide(); 
+  }
+  if($('#inputGroupSelect05').val() == "2") {
+    $('#clh1').hide(); 
+    $('#clh2').show(); 
+    $('#clh3').hide(); 
+  }
+  if($('#inputGroupSelect05').val() == "3") {
+    $('#clh1').hide(); 
+    $('#clh2').hide(); 
+    $('#clh3').show(); 
+  }
+});
+</script>

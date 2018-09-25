@@ -1,0 +1,70 @@
+<%= form_for :post, url: relative_activities_path,:html => {:class => "form-horizontal center"} do |f| %>
+
+    <div class="form-row">
+    <div class="form-group col-md-4">
+    <%= f.label :entry_date, "Date :" %>
+    <%= f.date_field :entry_date,class: 'form-control' %>
+    </div>
+    <div class="form-group col-md-4">
+        <%= f.label :meditation ,"Meditation : "%>
+        <%= f.number_field :meditation,class: 'form-control',:min=>0,:max=>10,:required=>true %>
+    </div>
+    <div class="form-group col-md-4">
+        <%= f.label :exercise ,"Exercise : "%>
+        <%= f.number_field :exercise,class: 'form-control',:min=>0,:max=>10,:required=>true %>
+    </div>
+    </div>
+    <div class="form-row">
+    <div class="form-group col-md-4">
+        <%= f.label :reading ,"Reading : "%>
+        
+        <%= f.number_field :reading,class: 'form-control',:min=>0,:max=>10,:required=>true %>
+        
+    </div>
+    <div class="form-group col-md-4">
+        <%= f.label :concentration ,"Concentration : "%>
+        
+        <%= f.number_field :concentration,class: 'form-control',:min=>0,:max=>10,:required=>true %>
+        
+    </div>
+    <div class="form-group col-md-4">
+        <%= f.label :hard_working ,"Hard_working : "%>
+        
+        <%= f.number_field :hard_working,class: 'form-control',:min=>0,:max=>10,:required=>true %>
+        
+    </div>
+    </div>
+    <div class="form-row">
+    <div class="form-group col-md-4">
+        <%= f.label :metal_stability ,"Mental Stability : "%>
+        
+        <%= f.number_field :metal_stability,class: 'form-control',:min=>0,:max=>10,:required=>true %>
+        
+    </div>
+    <div class="form-group col-md-4">
+        <%= f.label :self_confidene ,"Self Confidence : "%>
+       
+        <%= f.number_field :self_confidene,class: 'form-control',:min=>0,:max=>10,:required=>true %>
+        
+    </div>
+    <div class="form-group col-md-4">
+        <%= f.label :time_management ,"Time Management : "%>
+        
+        <%= f.number_field :time_management,class: 'form-control',:min=>0,:max=>10,:required=>true %>
+        
+    </div>
+    </div>
+    <div class="form-row">
+    <div class="form-group col-md-4">
+        <%= f.label :universal_power ,"Universal Power : "%>
+        
+        <%= f.number_field :universal_power,class: 'form-control',:min=>0,:max=>10,:required=>true %>
+        
+    </div>
+    </div>
+    <%= f.submit "Submit",class: 'btn btn-primary' %>
+<% end %>
+
+<script>
+document.getElementById("post_entry_date").valueAsDate = new Date();
+</script>

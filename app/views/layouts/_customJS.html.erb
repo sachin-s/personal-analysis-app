@@ -1,0 +1,27 @@
+<script>
+
+var d = new Date();
+    var n = d.getFullYear();
+    document.getElementById("main-footer1").innerHTML = '&#xa9; '+n+' Sachin S. All rights reserved.';
+
+    var toggle1Flag = false;
+$('#toggle1').click(function(){
+    toggle1Flag = !toggle1Flag
+    
+    if(toggle1Flag){
+        $('#sidebar-wrapper').animate({width:0,opacity:0});
+    $('#main-content-wrapper').animate({left:0});
+    }
+    else
+    {    
+    $('#sidebar-wrapper').animate({width:250,opacity:1});
+    $('#main-content-wrapper').animate({left:250});
+    }
+});
+<% if user_signed_in? %>
+ $('#toggle1').click();
+ $('#toggle1').click();
+<% end %>
+
+
+</script>

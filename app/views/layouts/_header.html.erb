@@ -1,0 +1,12 @@
+<nav class="navbar fixed-top navbar-dark bg-primary shadow">
+<%if user_signed_in?%>
+<button class="btn btn-secondary" id="toggle1"><i class="fas fa-bars"></i></button>
+<% end %>
+  <a class="navbar-brand" href="<%=transactions_path%>"> Bank </a>
+ 
+  <%if user_signed_in?%>
+  
+  <%= link_to("Log out",destroy_user_session_path, method: :delete,class:'btn btn-secondary')%>
+  
+  <% end %>
+</nav>

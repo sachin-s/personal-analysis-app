@@ -1,0 +1,2 @@
+module RelativeActivitiesHelper
+end
