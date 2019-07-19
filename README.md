@@ -16,7 +16,7 @@ you can access the app in http://localhost:3000
 some of the general solutions you can try if any problem occurs :
   - try "bundle exec rake db:reset" and again start server using "rails s" command
   - if the above solution did not work. You can delete development.sqlite3 and schema.rb file and
-    execute "bundle exec rake:db"
+    execute "bundle exec rake db"
     then execute "rake db:seed" => this seed command helps to prepopulate some values to the database
     and run "rails s" to start the command
     
